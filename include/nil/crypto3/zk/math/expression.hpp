@@ -373,7 +373,11 @@ namespace nil {
                         case ArithmeticOperator::MULT:
                             return "*";
                         default:
+                            #if defined(_MSC_VER) && !defined(__clang__)
+                            __assume(false);
+                            #else
                             __builtin_unreachable();
+                            #endif
                     }
                 }
 
